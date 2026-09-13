@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushi's Egg Corner</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#171717;background:#fffaf0}
+header{background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 5%;position:sticky;top:0;z-index:10;border-bottom:1px solid #eee}
+.logo{font-size:26px;font-weight:800;line-height:.9}.logo span{color:#f5b900}.nav{display:flex;gap:28px;align-items:center}.nav a{color:#111;text-decoration:none}.wa{background:#ffc51b;padding:13px 20px;border-radius:12px;font-weight:700}
+.hero{background:linear-gradient(90deg,#161616 0%,#302015 100%);color:#fff;padding:55px 5%;display:flex;align-items:center;gap:30px;min-height:390px}
+.heroText{width:45%}.hero h1{font-size:55px;line-height:.95;margin:12px 0}.hero h1 span{color:#ffc51b}.hero p{font-size:19px;line-height:1.5}.heroImg{width:55%;height:300px;border-radius:20px;background:radial-gradient(circle at 55% 45%,#f3c65b 0 8%,#a56a27 9% 22%,#55301b 23% 48%,#24160f 49%);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:15px 24px;font-weight:700;font-size:16px;cursor:pointer}.yellow{background:#ffc51b}.green{background:#18b85a;color:white}
+.container{max-width:1200px;margin:auto;padding:38px 5%}.title{font-size:34px;margin:0 0 25px}.title:after{content:"";display:block;width:70px;height:4px;background:#ffc51b;margin-top:8px}
+.layout{display:grid;grid-template-columns:1fr 300px;gap:25px}.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #ddd;border-radius:12px;overflow:hidden;padding-bottom:12px}.food{height:145px;background:linear-gradient(135deg,#8c4b1f,#f2c35c,#39732d);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:20px}.card h3{margin:12px 14px 5px}.price{margin:0 14px 12px;color:#d21f18;font-size:20px;font-weight:800}.card button{width:calc(100% - 28px);margin:0 14px}
+.cart{background:#fff;border:1px solid #ddd;border-radius:14px;padding:20px;height:max-content;position:sticky;top:90px}.cart h2{margin-top:0}.cartLine{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}.total{font-size:21px;font-weight:800;margin:15px 0}.option{display:flex;gap:8px;margin:10px 0}.field{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:6px 0}
+.features{background:#171717;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:35px 5%;text-align:center}.features b{color:#ffc51b;font-size:18px}.footer{background:#101010;color:#fff;padding:30px 5%;text-align:center}
+@media(max-width:850px){.nav{display:none}.hero{display:block}.heroText,.heroImg{width:100%}.hero h1{font-size:42px}.layout{grid-template-columns:1fr}.menu{grid-template-columns:repeat(2,1fr)}.cart{position:static}.features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.menu{grid-template-columns:1fr}.hero{padding:35px 5%}.heroImg{height:210px}.features{grid-template-columns:1fr}.logo{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">SUSHI’S<br><span>EGG CORNER</span></div>
+  <nav class="nav"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#order">Order</a><a href="#contact">Contact</a></nav>
+  <button class="btn wa" onclick="whatsapp()">🟢 Order on WhatsApp</button>
+</header>
+
+<section class="hero" id="home">
+  <div class="heroText">
+    <div style="color:#ffc51b;font-weight:700;font-size:20px">Tasty & Fresh</div>
+    <h1>SUSHI’S<br><span>EGG CORNER</span></h1>
+    <p>Freshly cooked. Simple ingredients. Great taste. Pocket-friendly local food.</p>
+    <div class="buttons">
+      <button class="btn green" onclick="whatsapp()">Order on WhatsApp</button>
+      <a class="btn yellow" href="#order" style="text-decoration:none;color:#111">Delivery / Pickup</a>
+    </div>
+  </div>
+  <div class="heroImg">🍳 🍚 🍜<br>Fresh Food</div>
+</section>
+
+<section class="container" id="menu">
+<h2 class="title">Our Menu</h2>
+<div class="layout">
+<div class="menu">
+  <div class="card"><div class="food">🥚 Boiled Egg</div><h3>Boiled Egg</h3><p class="price">₹20</p><button class="btn yellow" onclick="add('Boiled Egg',20)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍜 Veg Noodles</div><h3>Veg Noodles</h3><p class="price">₹70</p><button class="btn yellow" onclick="add('Veg Noodles',70)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍚 Veg Rice</div><h3>Veg Rice</h3><p class="price">₹60</p><button class="btn yellow" onclick="add('Veg Rice',60)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍜 Egg Noodles</div><h3>Egg Noodles</h3><p class="price">₹90</p><button class="btn yellow" onclick="add('Egg Noodles',90)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍚 Egg Rice</div><h3>Egg Rice</h3><p class="price">₹80</p><button class="btn yellow" onclick="add('Egg Rice',80)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍳 Egg Bhurji</div><h3>Egg Bhurji</h3><p class="price">₹70</p><button class="btn yellow" onclick="add('Egg Bhurji',70)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍳 Egg Omelet</div><h3>Egg Omelet</h3><p class="price">₹60</p><button class="btn yellow" onclick="add('Egg Omelet',60)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🥚 Egg Bonda</div><h3>Egg Bonda</h3><p class="price">₹50</p><button class="btn yellow" onclick="add('Egg Bonda',50)">Add to Cart +</button></div>
+  <div class="card"><div class="food">🍢 Kebab</div><h3>Kebab</h3><p class="price">₹70</p><button class="btn yellow" onclick="add('Kebab',70)">Add to Cart +</button></div>
+</div>
+
+<aside class="cart" id="order">
+<h2>🛒 Your Order</h2>
+<div id="items">No items yet. Add food from the menu.</div>
+<div class="total">Total: ₹<span id="total">0</span></div>
+<select id="type" class="field"><option>Pickup</option><option>Delivery</option></select>
+<input id="name" class="field" placeholder="Customer name">
+<input id="phone" class="field" placeholder="Phone number">
+<input id="address" class="field" placeholder="Delivery address (if delivery)">
+<button class="btn green" style="width:100%;margin-top:8px" onclick="whatsapp()">🟢 Send Order on WhatsApp</button>
+</aside>
+</div>
+</section>
+
+<section class="features">
+<div>🍃<br><b>Fresh Ingredients</b><br>Quality ingredients</div>
+<div>👨‍🍳<br><b>Made to Order</b><br>Fresh and hot</div>
+<div>₹<br><b>Affordable Prices</b><br>Good food, good value</div>
+<div>📍<br><b>Local & Trusted</b><br>Made for our community</div>
+</section>
+<footer class="footer" id="contact">
+  <h2>SUSHI’S EGG CORNER</h2>
+  <p>Fresh • Tasty • Always</p>
+  <p>📱 WhatsApp ordering • 🛵 Delivery • 🏪 Pickup</p>
+  <p>© Sushi’s Egg Corner</p>
+</footer>
+
+<script>
+let cart=[];
+function add(name,price){cart.push({name,price});render();}
+function render(){
+ let box=document.getElementById('items'), total=0;
+ if(!cart.length){box.innerHTML='No items yet. Add food from the menu.';}
+ else{box.innerHTML=cart.map((x,i)=>{total+=x.price;return `<div class="cartLine"><span>${x.name}</span><b>₹${x.price}</b></div>`}).join('');}
+ document.getElementById('total').textContent=total;
+}
+function whatsapp(){
+ if(!cart.length){alert('Please add food to your order first.');return;}
+ const name=document.getElementById('name').value||'Not provided';
+ const phone=document.getElementById('phone').value||'Not provided';
+ const type=document.getElementById('type').value;
+ const address=document.getElementById('address').value||'Not provided';
+ const total=cart.reduce((s,x)=>s+x.price,0);
+ const list=cart.map(x=>`• ${x.name} - ₹${x.price}`).join('%0A');
+ const message=`Hello SUSHI'S EGG CORNER!%0A%0AOrder:%0A${list}%0A%0ATotal: ₹${total}%0AOrder type: ${type}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}`;
+ const YOUR_WHATSAPP_NUMBER='919538209056';
+ window.open('https://wa.me/'+YOUR_WHATSAPP_NUMBER+'?text='+message,'_blank');
+}
+</script>
+</body>
+</html>
