@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sushi's Egg Corner | Order Online</title>
+<style>
+:root{--yellow:#ffc51b;--dark:#15181a;--cream:#fffaf0;--green:#16b957;--red:#d92820}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:#161616}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e8e8e8;padding:12px clamp(18px,5vw,70px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#111}.egglogo{width:48px;height:48px;border:5px solid #111;border-radius:50%;background:var(--yellow);display:grid;place-items:center;font-size:23px}.brand strong{font-size:22px;line-height:.9}.brand span{display:block;color:#eeb500;font-size:18px}.nav{display:flex;gap:25px}.nav a{color:#111;text-decoration:none;font-weight:600}.topcart{background:var(--yellow);border:0;border-radius:12px;padding:12px 18px;font-weight:800}
+.hero{background:linear-gradient(110deg,#151515,#3a2416);color:#fff;padding:60px clamp(18px,5vw,70px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:45px;min-height:480px}
+.kicker{color:var(--yellow);font-weight:800;font-size:19px}.hero h1{font-size:clamp(42px,6vw,72px);line-height:.92;margin:15px 0}.hero h1 span{color:var(--yellow)}.hero p{font-size:19px;line-height:1.5;max-width:600px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:14px 20px;font-weight:800}.btn.yellow{background:var(--yellow);color:#111}.btn.green{background:var(--green);color:#fff}.food-hero{height:330px;border-radius:28px;background:radial-gradient(circle at 50% 50%,#ffd56a 0 17%,#df8e2b 18% 30%,#9b5724 31% 45%,#412312 46% 100%);display:grid;place-items:center;box-shadow:0 20px 50px #0008;font-size:70px}
+.section{max-width:1250px;margin:auto;padding:55px clamp(18px,5vw,70px)}.section-title{font-size:38px;margin:0 0 8px}.under{height:4px;width:70px;background:var(--yellow);margin-bottom:28px}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:25px}.menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px #0000000a}.foodpic{height:155px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#673b20,#f1c04c,#4d702f)}.card-body{padding:14px}.card h3{margin:0 0 5px;font-size:18px}.price{color:var(--red);font-weight:900;font-size:20px;margin:0 0 12px}.add{width:100%;background:var(--yellow);border:0;border-radius:10px;padding:12px;font-weight:800}.add:hover,.topcart:hover,.btn.yellow:hover{filter:brightness(.95)}
+.cart{background:#fff;border:1px solid #ddd;border-radius:15px;padding:20px;height:max-content;position:sticky;top:90px;box-shadow:0 5px 18px #0000000a}.cart h2{margin:0 0 15px}.cart-empty{color:#777;padding:18px 0}.cart-item{display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px 0;border-bottom:1px solid #eee}.qty{display:flex;align-items:center;gap:7px;margin-top:7px}.qty button{width:28px;height:28px;border:1px solid #ddd;background:#fff;border-radius:7px}.cart-total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;padding:16px 0}.field{width:100%;border:1px solid #ccc;border-radius:9px;padding:11px;margin:5px 0;background:#fff}.order-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:7px 0}.option{border:1px solid #ddd;border-radius:10px;padding:10px;text-align:center;background:#fff}.option.active{border:2px solid var(--yellow);background:#fff8d9}.send{width:100%;margin-top:10px;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px;font-weight:900}
+.info{background:#171a1c;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:35px clamp(18px,5vw,70px);text-align:center}.info b{color:var(--yellow);font-size:18px}.info div{line-height:1.5}
+footer{background:#101112;color:#fff;padding:30px clamp(18px,5vw,70px);text-align:center}.footer-brand{font-size:25px;font-weight:900}.footer-brand span{color:var(--yellow)}
+.toast{position:fixed;right:20px;bottom:20px;background:#111;color:#fff;padding:13px 17px;border-radius:10px;display:none;z-index:100}
+@media(max-width:950px){.content{grid-template-columns:1fr}.cart{position:static}.menu{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.nav{display:none}.hero{grid-template-columns:1fr;padding-top:40px}.food-hero{height:240px}.menu{grid-template-columns:1fr}.info{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:430px){header{padding:10px 14px}.brand strong{font-size:18px}.brand span{font-size:15px}.egglogo{width:40px;height:40px}.topcart{padding:10px}.info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<a class="brand" href="#home">
+<div class="egglogo">🍳</div>
+<div><strong>SUSHI'S</strong><span>EGG CORNER</span></div>
+</a>
+<nav class="nav"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#order">Order</a><a href="#contact">Contact</a></nav>
+<button class="topcart" onclick="document.getElementById('order').scrollIntoView()">🛒 Cart <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero" id="home">
+<div>
+<div class="kicker">TASTY & FRESH</div>
+<h1>SUSHI'S<br><span>EGG CORNER</span></h1>
+<p>Freshly cooked. Simple ingredients. Great taste. Pocket-friendly prices.</p>
+<div class="hero-actions">
+<button class="btn green" onclick="document.getElementById('menu').scrollIntoView()">🍽️ Order Now</button>
+<button class="btn yellow" onclick="document.getElementById('menu').scrollIntoView()">View Menu</button>
+</div>
+</div>
+<div class="food-hero">🍚🍳</div>
+</section>
+
+<section class="section" id="menu">
+<h2 class="section-title">Our Menu</h2><div class="under"></div>
+<div class="content">
+<div class="menu" id="menuGrid"></div>
+
+<aside class="cart" id="order">
+<h2>🛒 Your Order</h2>
+<div id="cartItems" class="cart-empty">Add your favourite food from the menu.</div>
+<div class="cart-total"><span>Total</span><span>₹<span id="total">0</span></span></div>
+
+<div><b>Order Type</b></div>
+<div class="order-options">
+<button id="pickup" class="option active" onclick="setType('Pickup')">🏪<br><b>Pickup</b></button>
+<button id="delivery" class="option" onclick="setType('Delivery')">🛵<br><b>Delivery</b></button>
+</div>
+
+<input id="name" class="field" placeholder="Customer name">
+<input id="phone" class="field" placeholder="Phone number">
+<input id="address" class="field" placeholder="Address (for delivery)">
+<textarea id="note" class="field" rows="2" placeholder="Any special instructions?"></textarea>
+
+<button class="send" onclick="sendWhatsApp()">🟢 Send Order on WhatsApp</button>
+<p style="font-size:12px;color:#777">Your order will open in WhatsApp to Sushi's Egg Corner.</p>
+</aside>
+</div>
+</section>
+
+<section class="info">
+<div>🍃<br><b>Fresh Ingredients</b><br>Quality food</div>
+<div>👨‍🍳<br><b>Made to Order</b><br>Fresh & hot</div>
+<div>₹<br><b>Affordable Prices</b><br>Good value</div>
+<div>📍<br><b>Local & Trusted</b><br>Made for our community</div>
+</section>
+
+<footer id="contact">
+<div class="footer-brand">SUSHI'S <span>EGG CORNER</span></div>
+<p>Fresh • Tasty • Always</p>
+<p>🟢 WhatsApp Ordering &nbsp; • &nbsp; 🛵 Delivery &nbsp; • &nbsp; 🏪 Pickup</p>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const WHATSAPP="919538209056";
+const products=[
+["Boiled Egg",20,"🥚"],["Veg Noodles",70,"🍜"],["Veg Rice",60,"🍚"],
+["Egg Noodles",90,"🍜"],["Egg Rice",80,"🍚"],["Egg Bhurji",70,"🍳"],
+["Egg Omelet",60,"🍳"],["Egg Bonda",50,"🥚"],["Kebab",70,"🍢"]
+];
+let cart={};let orderType="Pickup";
+
+function renderMenu(){
+document.getElementById("menuGrid").innerHTML=products.map((p,i)=>`
+<article class="card">
+<div class="foodpic">${p[2]}</div>
+<div class="card-body">
+<h3>${p[0]}</h3><div class="price">₹${p[1]}</div>
+<button class="add" onclick="add(${i})">🛒 Add to Cart +</button>
+</div></article>`).join("");
+}
+function add(i){cart[i]=(cart[i]||0)+1;renderCart();toast(products[i][0]+" added");}
+function change(i,d){cart[i]=(cart[i]||0)+d;if(cart[i]<=0)delete cart[i];renderCart();}
+function renderCart(){
+let keys=Object.keys(cart),total=0,count=0;
+if(!keys.length)document.getElementById("cartItems").innerHTML='<div class="cart-empty">Add your favourite food from the menu.</div>';
+else document.getElementById("cartItems").innerHTML=keys.map(k=>{
+let p=products[k],q=cart[k];total+=p[1]*q;count+=q;
+return `<div class="cart-item"><div><b>${p[2]} ${p[0]}</b><div class="qty"><button onclick="change(${k},-1)">−</button><span>${q}</span><button onclick="change(${k},1)">+</button></div></div><b>₹${p[1]*q}</b></div>`}).join("");
+document.getElementById("total").textContent=total;
+document.getElementById("cartCount").textContent=count;
+}
+function setType(type){orderType=type;document.getElementById("pickup").classList.toggle("active",type==="Pickup");document.getElementById("delivery").classList.toggle("active",type==="Delivery");}
+function sendWhatsApp(){
+let keys=Object.keys(cart);
+if(!keys.length){alert("Please add at least one item.");return;}
+let name=document.getElementById("name").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let address=document.getElementById("address").value.trim();
+let note=document.getElementById("note").value.trim();
+if(!name){alert("Please enter customer name.");document.getElementById("name").focus();return;}
+if(!phone){alert("Please enter phone number.");document.getElementById("phone").focus();return;}
+if(orderType==="Delivery"&&!address){alert("Please enter delivery address.");document.getElementById("address").focus();return;}
+let total=0;
+let lines=keys.map(k=>{let p=products[k],q=cart[k],v=p[1]*q;total+=v;return `• ${p[0]} x ${q} = ₹${v}`;}).join("\n");
+let msg=`Hello Sushi's Egg Corner!%0A%0A*NEW ORDER*%0A${encodeURIComponent(lines)}%0A%0A*Total: ₹${total}*%0AOrder Type: ${encodeURIComponent(orderType)}%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AAddress: ${encodeURIComponent(address||"N/A")}%0ANote: ${encodeURIComponent(note||"None")}`;
+window.open(`https://wa.me/${WHATSAPP}?text=${msg}`,"_blank");
+}
+function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1500);}
+renderMenu();renderCart();
+</script>
+</body>
+</html>
